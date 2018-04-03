@@ -18,6 +18,7 @@ import com.pycredit.h5sdk.H5SDKHelper;
 import com.pycredit.h5sdk.capture.CustomCaptureImpl;
 import com.pycredit.h5sdk.impl.BannerCallback;
 
+//使用AppCompatActivity要求依赖appcompat-v7包且版本至少为25.1.0 否则请使用Activity
 public class DemoActivity extends AppCompatActivity {
 
     private WebView mWebView;

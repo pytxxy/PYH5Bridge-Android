@@ -2,7 +2,8 @@
 
 **H5Bridge android集成与使用流程**
 
-一、**集成SDK**  
+一、**集成SDK**
+工程根目录下的build.gradle中加上如下代码
 
 ```  
 allprojects {
@@ -14,7 +15,11 @@ allprojects {
     }
 }
 
+```
 
+具体使用此SDK的模块下的build.gradle中加上如下依赖
+
+```
 dependencies {
     compile 'com.pycredit.h5sdk:h5bridge:x.x.x' //x.x.x为SDK版本号,如:1.2.0
 }
