@@ -2,6 +2,10 @@
 
 **H5Bridge android集成与使用流程**
 
+**注意：接入本sdk后的应用不可使用热修复方式发版，因为sdk中有在AndroidManifest.xml中新增Activity与ContentProvider**
+
+
+
 一、**集成SDK**
 工程根目录下的build.gradle中加上如下代码
 
