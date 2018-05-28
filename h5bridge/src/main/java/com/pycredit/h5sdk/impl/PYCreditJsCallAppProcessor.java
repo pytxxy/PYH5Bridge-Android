@@ -704,10 +704,12 @@ public class PYCreditJsCallAppProcessor implements PYCreditJsCallAppProcess {
                 public void onSuccess(String savePath) {
                     //拍照成功
                     JSONObject dataObj = captureInfo.getDataObj();
+                    int width = dataObj.optInt("width", Integer.MAX_VALUE);
                     int thumbWidth = dataObj.optInt("thumbWidth", Integer.MAX_VALUE);
                     int thumbHeight = dataObj.optInt("thumbHeight", Integer.MAX_VALUE);
                     Bitmap bitmap = ImageUtils.getBitmap(cameraFilePath, thumbWidth, thumbHeight);
-                    if (bitmap != null) {
+                    Bitmap scaleBitmap = ImageUtils.getBitmap(cameraFilePath, width, width);
+                    if (bitmap != null && scaleBitmap != null && ImageUtils.save(scaleBitmap, cameraFilePath, Bitmap.CompressFormat.JPEG, true)) {
                         byte[] bytes = ImageUtils.bitmap2Bytes(bitmap, Bitmap.CompressFormat.JPEG);
                         bitmap.recycle();
                         String base64Encode2String = EncodeUtils.base64Encode2String(bytes);
