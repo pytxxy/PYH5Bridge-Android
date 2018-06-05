@@ -19,6 +19,7 @@ public class AudioRecordManager {
     private DataOutputStream dos;
     private Thread recordThread;
     private boolean isStart = false;
+    private boolean hasResult = false;
     private int bufferSize;
     /**
      * record thread
@@ -34,6 +35,7 @@ public class AudioRecordManager {
                 while (isStart) {
                     if (mRecorder != null) {
                         bytesRecord = mRecorder.read(tempBuffer, 0, bufferSize);
+                        hasResult = true;
                         if (bytesRecord == AudioRecord.ERROR_INVALID_OPERATION || bytesRecord ==
                                 AudioRecord.ERROR_BAD_VALUE) {
                             continue;
@@ -46,6 +48,7 @@ public class AudioRecordManager {
                     }
                 }
             } catch (Exception e) {
+                isStart = false;
                 e.printStackTrace();
             }
         }
@@ -128,7 +131,12 @@ public class AudioRecordManager {
      */
     public void stopRecord() throws IOException, InterruptedException {
         // specially for OPPO、XIAOMI、MEIZU、HUAWEI and so on
-        Thread.sleep(250);
+        while (!hasResult) {
+            if (!isStart) {
+                startThread();
+            }
+            Thread.sleep(50);
+        }
         destroyThread();
         if (mRecorder != null) {
             if (mRecorder.getState() == AudioRecord.STATE_INITIALIZED) {

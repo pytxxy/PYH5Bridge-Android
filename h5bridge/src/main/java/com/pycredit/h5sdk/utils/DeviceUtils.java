@@ -18,7 +18,7 @@ public class DeviceUtils {
      * @return
      */
     public static File getCacheDir(Context context) {
-        if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
             File externalCacheDir = context.getExternalCacheDir();
             if (externalCacheDir != null) {
                 return externalCacheDir;
