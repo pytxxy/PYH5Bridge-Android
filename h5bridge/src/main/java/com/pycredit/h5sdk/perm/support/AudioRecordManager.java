@@ -14,6 +14,8 @@ import java.io.IOException;
  */
 
 public class AudioRecordManager {
+    private static final int MAX_ERROR_COUNT = 3;
+
     public File file;
     private AudioRecord mRecorder;
     private DataOutputStream dos;
@@ -21,6 +23,7 @@ public class AudioRecordManager {
     private boolean isStart = false;
     private boolean hasResult = false;
     private int bufferSize;
+    private int errorCount = 0;
     /**
      * record thread
      */
@@ -49,6 +52,7 @@ public class AudioRecordManager {
                 }
             } catch (Exception e) {
                 isStart = false;
+                errorCount++;
                 e.printStackTrace();
             }
         }
@@ -132,7 +136,7 @@ public class AudioRecordManager {
     public void stopRecord() throws IOException, InterruptedException {
         // specially for OPPO、XIAOMI、MEIZU、HUAWEI and so on
         while (!hasResult) {
-            if (!isStart) {
+            if (!isStart && errorCount < MAX_ERROR_COUNT) {
                 startThread();
             }
             Thread.sleep(50);
