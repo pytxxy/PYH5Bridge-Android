@@ -1,4 +1,4 @@
-[ ![Download](https://api.bintray.com/packages/tianxiaxinyong/maven/PYH5Bridge/images/download.svg?version=1.2.3) ](https://bintray.com/tianxiaxinyong/maven/PYH5Bridge/1.2.3/link)
+[ ![Download](https://api.bintray.com/packages/tianxiaxinyong/maven/PYH5Bridge/images/download.svg?version=1.2.4) ](https://bintray.com/tianxiaxinyong/maven/PYH5Bridge/1.2.4/link)
 
 **H5Bridge android集成与使用流程**
 
@@ -25,7 +25,7 @@ allprojects {
 
 ```
 dependencies {
-    compile 'com.pycredit.h5sdk:h5bridge:x.x.x' //x.x.x为SDK版本号,如:1.2.3
+    compile 'com.pycredit.h5sdk:h5bridge:x.x.x' //x.x.x为SDK版本号,如:1.2.4
 }
 ```
 
